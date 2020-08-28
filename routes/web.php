@@ -1,10 +1,103 @@
 <?php
+/* ------------------  Grupo de Rota  ------------------  */
+
+/* Os filtros middleware já criado pelo suporte do laravel serve para nos fazermos validações em nosso código.  */
+
+/* Ex.: O middleware tem vários paramentros com diversos recursos e um dele é de autenticação, dizendo que o usuário precisa está logado. */
+
+/* Irei criar várias rotas e colocar o middleware de autenticação nele */
+
+// Route::get('/admin/financeiro', function() {
+//     return 'Página do financeiro';
+// }); 
+
+// Route::get('/admin/home', function() {
+//     return 'Página home do administrador'; // Dessa maneira qualquer pessoa pode acessar nossa página, para evitar isso colocamos um middleware de autenticação.
+// });
+
+// Route::get('/admin/home', function() {
+//     return 'Página home do administrador';
+// })->middleware('auth'); //Verifica se o usuário está logado, caso não esteja ele redireciona para página Login
+
+Route::get('/login', function() {
+    return 'Página de login';
+})->name('login');
+
+/* Coloca o middleware em um grupo de rotas */
+// Route::middleware([])->group(function () {
+
+//     Route::prefix('admin')->group(function() {
+
+//         // Route::get('/financeiro', function() {
+//         //     return 'Página do financeiro';
+//         // }); 
+    
+//         // Route::get('/home', function() {
+//         //     return 'Página home do administrador';
+//         // }); 
+
+//         /* Redirecionando para um Controller */
+//         /* Perceba que o nome da Past vai sempre ficar se repetindo, podemos utilizar um prefixo para ela */
+//         // Route::get('/' , 'Admin\TesteController@metodoTeste');
+
+//         // Route::get('/financeiro', 'Admin\TesteController@financeiro');
+
+//         // Route::get('/cadastro-adm', 'Admin\TesteController@cadastroAdmin');
+
+
+//         // Route::namespace('Admin')->group(function() {
+
+//         //     Route::name('admin.')->group(function () {
+
+//         //         Route::get('/', 'TesteController@metodoTeste')->name('dashboard'); 
+                
+//         //         Route::get('/financeiro', 'TesteController@financeiro')->name('financeiro');
+                
+//         //         Route::get('/cadastro-adm', 'TesteController@cadastroAdm')->name('cadastro-adm');
+
+//         //         Route::Get('/teste/bla', function() {
+//         //             return redirect()->route('admin.financeiro');
+//         //         });
+
+//         //     });
+//         // });
+        
+//     });
+// });
+
+
+/* Organizando todos os grupo de uma vez só */
+
+Route::group([
+    'middleware' => [],
+    'prefix' => 'panel-adm',
+    'namespace' => 'Admin',
+    'as' => 'admin.', // as = name
+], function(){
+    
+    Route::get('/dashboard', 'TesteController@metodoTeste')->name('dasboard');
+
+    Route::get('/financeiro', 'TesteController@financeiro')->name('financeiro');
+
+    Route::get('/cadastro', 'TesteController@cadastroAdm')->name('cadastroAdm');
+
+    Route::get('/', function(){
+        return redirect()->route('admin.financeiro');
+    });
+
+});
+
+
+
+
 
 /* ------------------  Rotas nomeadas ------------------  */
 
 Route::get('/redirecionar-rota-nomeada', function(){
     return redirect()->route('id-rota-nomeada'); // Para acessar o id de qualquer rota, podemos utilizar o método route() e informar o id de qualquer rota que queremos
 });
+
+// route('id-rota-nomeada'); retorna a rota '/rota-nomeada' dinamicamento, pois ela pode ser altera e esse método receberá
 
 Route::get('/rota-nomeada', function(){ // Rota do navegador
     return 'Essa é uma rota nomeada com um ID';
