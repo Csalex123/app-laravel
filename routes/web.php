@@ -1,8 +1,25 @@
 <?php
 
+/*  ------------------ Redirecionamento de Rota ------------------  */
+
+Route::get('/enviar1', function() {
+    return 'Página do envio 1';
+});
+
+// Route::get('/enviar2', function(){
+//     return redirect('/enviar1'); //Esse método é um help, disponível em todo código. E esse faz redirecionamento de página/rota
+// });
+
+/* Outra maneira de redirecionar */
+
+Route::redirect('/enviar2', '/enviar1');
+
+/* Redirecionar para uma view de uma maneira mais fácil */
+
+Route::view('/teste2', 'welcome');
 
 
-/* Paramentros na routa */
+/* -------------- Paramentros na routa --------------------- */
 
 Route::get('produto/{idProduto?}', function($idProduto = ''){
     return "Produtos {$idProduto}";
@@ -16,7 +33,7 @@ Route::get('/categoria/{flag}/post', function($flag) {
     return "A flag que pegamos no paramentro é essa: {$flag}";
 });
 
-/* Any e Match */
+/* ------------------ Any e Match ------------------ */
 
 Route::any('/any', function(){
     return 'Recebe todos os tipos de dados';
@@ -27,7 +44,7 @@ Route::match(['post', 'get'], '/match', function() {
 });
 
 
-/* GET E POST */
+/* ------------------ GET E POST ------------------ */
 
 Route::post('/receber', function() {
     return 'dados recebido';
