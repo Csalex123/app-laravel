@@ -1,4 +1,19 @@
 <?php
+
+/* Rotas com controllers */
+
+Route::get('/produtos', 'ProductController@index')->name('products.index');
+
+
+
+
+
+
+
+
+
+
+
 /* ------------------  Grupo de Rota  ------------------  */
 
 /* Os filtros middleware já criado pelo suporte do laravel serve para nos fazermos validações em nosso código.  */
@@ -86,8 +101,6 @@ Route::group([
     });
 
 });
-
-
 
 
 
