@@ -1,5 +1,16 @@
 <?php
 
+/* ------------------  Rotas nomeadas ------------------  */
+
+Route::get('/redirecionar-rota-nomeada', function(){
+    return redirect()->route('id-rota-nomeada'); // Para acessar o id de qualquer rota, podemos utilizar o método route() e informar o id de qualquer rota que queremos
+});
+
+Route::get('/rota-nomeada', function(){ // Rota do navegador
+    return 'Essa é uma rota nomeada com um ID';
+})->name('id-rota-nomeada'); //Id que identifica essa rota dentro do PHP
+
+
 /*  ------------------ Redirecionamento de Rota ------------------  */
 
 Route::get('/enviar1', function() {
