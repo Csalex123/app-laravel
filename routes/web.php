@@ -2,14 +2,24 @@
 
 /* Rotas com controllers */
 
-Route::get('/produtos', 'ProductController@index')->name('products.index');
+Route::resource('products', 'ProductController');
 
+Route::resource('users', 'UserController');
 
+// Route::name('products.')->group(function() {
 
+//     /* Rota view */
+//     Route::get('/produto/{id}/edit', 'ProductController@editProduct')->name('edit');
+//     Route::get('/produtos/create', 'ProductController@createProduct')->name('create');
+//     Route::get('/produtos', 'ProductController@index')->name('index');
+//     Route::get('/produtos/{$id}', 'ProductController@filterProdutos')->name('filter');
 
+//     /*Rota para efetuar ações no model*/
+//     Route::post('/produtos', 'ProductController@store')->name('create-product');
+//     Route::put('/produtos/{$id}', 'ProductController@update')->name('edit-product');
+//     Route::delete('/produtos/{$id}', 'ProductController@delete')->name('delete-product');
 
-
-
+// });
 
 
 

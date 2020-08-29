@@ -4,21 +4,21 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class ProductController extends Controller
+class UserController extends Controller
 {   
     protected $request;
 
-    public function __constructor(Request $request){
+    public function __construction(Request $request){
         $this->$request = $request;
-
-        $this->middleware('auth')->except('store');
     }
 
     public function index()
-    {   
-        $numero = 15;
-        
-        return view('admin.pages.products.index', compact('numero'));  //   admin/pages/products/index.blade.php
+    {
+
+        $title = "Página de usuário";
+        $tag = "<p>Alex</p>";
+
+        return view('user.index', compact('tag', 'title'));
     }
 
     public function create()
@@ -26,11 +26,11 @@ class ProductController extends Controller
         //
     }
 
-    public function store(Request $request)
+   
+    public function store()
     {
-        
+        //
     }
-
 
     public function show($id)
     {
@@ -43,12 +43,11 @@ class ProductController extends Controller
         //
     }
 
- 
-    public function update(Request $request, $id)
+
+    public function update($id)
     {
         //
     }
-
 
     public function destroy($id)
     {
