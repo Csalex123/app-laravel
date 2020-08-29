@@ -16,9 +16,12 @@ class UserController extends Controller
     {
 
         $title = "Página de usuário";
-        $tag = "<p>Alex</p>";
+        $numero = 10;
+        $teste = 'Texto teste';
+        $teste2 = '';
+        $teste3 = 5;
 
-        return view('user.index', compact('tag', 'title'));
+        return view('user.index', compact('numero', 'title', 'teste', 'teste2', 'teste3'));
     }
 
     public function create()
