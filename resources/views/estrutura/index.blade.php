@@ -2,6 +2,47 @@
 
 @section('content')
 
+<h1>Stacks</h1>
+
+@push('scripts')
+    <script src="../../../js/teste.js"></script>
+@endpush
+
+@push('styles')
+    {{-- Podemos colocar cdns, arquivos externos e também tags styles --}}
+    <style>
+        body{
+            background: #efefef;
+        }
+        .fisrt{
+            color: red;
+        }
+    </style>
+@endpush
+
+
+{{-- ------------------------------------------------------------ --}}
+
+<h1>Components e Slot</h1>
+
+@component('admin.components.card')
+    @slot('title')
+        <h1>Esse agora vai ser o título</h1>
+    @endslot
+
+    Esse conteúdo está indo para a variavel slot
+@endcomponent
+
+{{-- ------------------------------------------------------------ --}}
+<hr>
+
+<h1>Include blade</h1>
+
+@include('admin.includes.sucesso')
+
+{{-- ------------------------------------------------------------ --}}
+<hr>
+
 <h1>Estrutura de repetição Blade</h1>
 
 {{-- Verificar se a fariavel existe --}}
@@ -26,9 +67,4 @@
 
 @endsection
 
-<style>
-    .fisrt{
-        color: red;
-    }
-</style>
 

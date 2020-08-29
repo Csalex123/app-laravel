@@ -5,7 +5,10 @@
 <!-- Informando quais são os htmls que vão carregar dentro do template -->
 @section('content')
 
-<h1>Esse HTML pertence a index.</h1>
+<h1>Produtos</h1>
+<a href="/products/create">
+    <button>Cadastrar novo produto</button>
+</a>
 
 
 @endsection

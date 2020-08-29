@@ -4,15 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Admin Page</title>
+    <title>@yield('title')</title>
+
+    @stack('styles')
+
 </head>
 <body>
 
     @yield('content')
 
-    <Footer>
+    {{-- <Footer>
         Footer - Copyright
-    </Footer>
+    </Footer> --}}
+
+    @stack('scripts')
     
 </body>
 </html>
