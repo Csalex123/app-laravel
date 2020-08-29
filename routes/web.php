@@ -6,6 +6,10 @@ Route::resource('products', 'ProductController');
 
 Route::resource('users', 'UserController');
 
+Route::resource('estrutura', 'EstruturaRepeticao');
+
+
+
 // Route::name('products.')->group(function() {
 
 //     /* Rota view */
