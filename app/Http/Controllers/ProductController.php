@@ -32,6 +32,17 @@ class ProductController extends Controller
         // dd($request->has('description'));
         // dd($request->input('teste', 'Se não tiver valor, esse será o valor padrão'));
         // dd($request->except(['description', 'name']));
+
+        /* Pegando arquivo */
+        // dd($request->file('foto'));
+
+        /* Verificar se o arquivo é válido */
+        // dd($request->file('foto')->isValid());
+
+        /* Enviando arquivo para a pasta storage/app/products */
+        // if($request->foto->isValid()){
+        //     dd($request->foto->store('products')); 
+        // }
     }
 
     public function show($id)
@@ -47,7 +58,9 @@ class ProductController extends Controller
  
     public function update(Request $request, $id)
     {
-        dd("Editando...");
+        if($request->foto->isValid()){
+            dd($request->foto->store('products'));
+        }
     }
 
 
