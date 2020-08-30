@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\storeProductsRequest;
+
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -23,7 +25,7 @@ class ProductController extends Controller
         return view('admin.pages.products.create');
     }
 
-    public function store(Request $request)
+    public function store(storeProductsRequest $request)
     {    
         // dd($request)->only('description')
         // dd($request->only['name', 'description'])
@@ -43,6 +45,16 @@ class ProductController extends Controller
         // if($request->foto->isValid()){
         //     dd($request->foto->store('products')); 
         // }
+
+
+        /* Validação */
+        // $request->validate([
+        //     'name' => 'required|min:3|max:255',
+        //     'description' => 'nullable|min:3|max:1000',
+        //     'foto' => 'required|image'
+        // ]);
+
+        dd('Ok');
     }
 
     public function show($id)
