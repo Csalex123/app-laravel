@@ -6,7 +6,7 @@
 @section('content')
 
 <h1>Produtos</h1>
-<a href="/products/create">
+<a href={{ route('products.create')}}>
     <button>Cadastrar novo produto</button>
 </a>
 
