@@ -6,12 +6,9 @@ use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {   
-    protected $request;
 
-    public function __constructor(Request $request){
-        $this->$request = $request;
-
-        $this->middleware('auth')->except('store');
+    public function __constructor(){
+        // $this->middleware('auth')->except('store');
     }
 
     public function index()
@@ -27,16 +24,20 @@ class ProductController extends Controller
     }
 
     public function store(Request $request)
-    {   
-        dd("Cadastrando...");
+    {    
+        // dd($request)->only('description')
+        // dd($request->only['name', 'description'])
+        // dd($request->all());
+        // dd($request->description); 
+        // dd($request->has('description'));
+        // dd($request->input('teste', 'Se não tiver valor, esse será o valor padrão'));
+        // dd($request->except(['description', 'name']));
     }
-
 
     public function show($id)
     {
         //
     }
-
 
     public function edit($id)
     {
