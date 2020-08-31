@@ -25,8 +25,8 @@ class storeProductsRequest extends FormRequest
     {
         return [
             'name' => 'required|min:3|max:255',
-            'description' => 'nullable|min:3|max:1000',
-            'foto' => 'required|image'
+            'description' => 'required|min:3|max:10000',
+            'image' => 'nullable|image'
         ];
     }
 
@@ -37,7 +37,7 @@ class storeProductsRequest extends FormRequest
             'name.max' => 'O campo pode ter no máximo 255 caracteres',
             'name.min' => 'O campo tem que ter no mínimo 3 caracteres',
             'description.required' => 'A descrição é obrigatória',
-            'foto.required' => 'A foto é obrigatório'
+            'image.required' => 'A foto é obrigatório'
         ];
     }
 }

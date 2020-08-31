@@ -7,19 +7,20 @@ use App\Models\Product;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
-{   
+{
 
-    public function __constructor(){
+    public function __constructor()
+    {
         // $this->middleware('auth')->except('store');
     }
 
     public function index()
-    {   
-        $products = Product::latest()->paginate(20);
-        
+    {
+        $products = Product::latest()->paginate(10);
+
         return view('admin.pages.products.index', [
             'products' => $products,
-        ]); 
+        ]);
     }
 
     public function create()
@@ -28,7 +29,7 @@ class ProductController extends Controller
     }
 
     public function store(storeProductsRequest $request)
-    {    
+    {
         // dd($request)->only('description')
         // dd($request->only['name', 'description'])
         // dd($request->all());
@@ -56,18 +57,33 @@ class ProductController extends Controller
         //     'foto' => 'required|image'
         // ]);
 
-        dd('Ok');
+        $data = $request->only('name', 'price', 'description');
+        Product::create($data);
+
+        // $newNameImg = '';
+        // if ($request->foto->isValid()) {
+        //     $newNameImg = $request->foto->store('products');
+        // }
+
+        // $product = new Product;
+        // $product->name = $request->name;
+        // $product->description = $request->description;
+        // $product->price = $request->price;
+        // $product->image = $newNameImg;
+        // $product->save();
+
+        return redirect()->route('products.index');
     }
 
     public function show($id)
     {
-    
+
 
         $product = Product::find($id);
 
         //Verificar se existe algum produto, caso não exista, eu volto ele para página que estava.
-        if(!$product){
-            return redirect()->back();  
+        if (!$product) {
+            return redirect()->back();
         }
         return view('admin.pages.products.show', compact('product'));
     }
@@ -77,10 +93,10 @@ class ProductController extends Controller
         return view('admin.pages.products.edit', compact('id'));
     }
 
- 
+
     public function update(Request $request, $id)
     {
-        if($request->foto->isValid()){
+        if ($request->foto->isValid()) {
             dd($request->foto->store('products'));
         }
     }

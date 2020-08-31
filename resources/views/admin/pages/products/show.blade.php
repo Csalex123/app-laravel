@@ -4,6 +4,7 @@
 @section('content')
 
 <h1>Produto {{ $product->name }}</h1>
+<a href="{{ route('products.index') }}">Voltar </a>
 
 <ul>
     <li><b>Nome:</b> {{ $product->name }}</li>

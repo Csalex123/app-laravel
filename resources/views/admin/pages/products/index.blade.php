@@ -36,7 +36,7 @@
 </table>
 
 <div class="d-flex mt-5" style="justify-content: center">
-    {!! $products->links() !!}
+    {!! $products->onEachSide(1)->links() !!}
 </div>
 
 
