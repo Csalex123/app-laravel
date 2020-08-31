@@ -90,20 +90,39 @@ class ProductController extends Controller
 
     public function edit($id)
     {
-        return view('admin.pages.products.edit', compact('id'));
+        $product = Product::find($id);
+
+        return view('admin.pages.products.edit', compact('product'));
     }
 
 
     public function update(Request $request, $id)
     {
-        if ($request->foto->isValid()) {
-            dd($request->foto->store('products'));
-        }
+        // if ($request->foto->isValid()) {
+        //     dd($request->foto->store('products'));
+        // }
+
+        //Verificar se existe o produto pelo id
+
+        if(!$product = Product::find($id))
+            return redirect()->back();
+
+        $product->update($request->all());
+            
+        return redirect()->route('products.index');
     }
 
 
     public function destroy($id)
-    {
-        //
+    {   
+        //Verificar se o produto existe
+        $product = Product::find($id);
+
+        if(!$product)
+            return redirect()->back();
+        
+        $product->delete();
+
+        return redirect()->route('products.index');
     }
 }
