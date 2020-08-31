@@ -61,7 +61,15 @@ class ProductController extends Controller
 
     public function show($id)
     {
-        //
+    
+
+        $product = Product::find($id);
+
+        //Verificar se existe algum produto, caso não exista, eu volto ele para página que estava.
+        if(!$product){
+            return redirect()->back();  
+        }
+        return view('admin.pages.products.show', compact('product'));
     }
 
     public function edit($id)
