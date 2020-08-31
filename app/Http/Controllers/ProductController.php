@@ -98,12 +98,7 @@ class ProductController extends Controller
 
     public function update(Request $request, $id)
     {
-        // if ($request->foto->isValid()) {
-        //     dd($request->foto->store('products'));
-        // }
-
         //Verificar se existe o produto pelo id
-
         if(!$product = Product::find($id))
             return redirect()->back();
 
