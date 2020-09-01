@@ -23,8 +23,10 @@ class storeProductsRequest extends FormRequest
      */
     public function rules()
     {
+        $this->segment(2); // Pegando o id através da rota products/21/edit
+
         return [
-            'name' => 'required|min:3|max:255',
+            'name' => 'required|min:3|max:255|unique:products, name, {$id}, id',
             'description' => 'required|min:3|max:10000',
             'image' => 'nullable|image'
         ];
@@ -36,8 +38,11 @@ class storeProductsRequest extends FormRequest
             'name.required' => 'O nome é obrigatório',
             'name.max' => 'O campo pode ter no máximo 255 caracteres',
             'name.min' => 'O campo tem que ter no mínimo 3 caracteres',
+            'name.unique' => 'Já existe um produto com esse nome',
             'description.required' => 'A descrição é obrigatória',
-            'image.required' => 'A foto é obrigatório'
+            'image.required' => 'A foto é obrigatório',
+            'price.required' => 'O preço é obrigatório',
+            
         ];
     }
 }

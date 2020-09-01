@@ -2,6 +2,8 @@
 
 /* Rotas com controllers */
 
+Route::any('products/search', 'ProductController@search')->name('product.search');
+
 Route::resource('products', 'ProductController');
 
 Route::resource('users', 'UserController');

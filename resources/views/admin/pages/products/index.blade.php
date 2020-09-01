@@ -10,6 +10,11 @@
     <button class="btn btn-primary mb-5">Cadastrar novo produto</button>
 </a>
 
+<form action="{{ route('product.search') }}" class="form form-inline mb-5" method="post">
+    @csrf
+    <input type="search" name="filter" placeholder="Filtrar:" class="form-control mr-2" value="{{ $filters['filter'] ?? ''}}">
+    <button class="btn btn-primary" type="submit">Pesquisar</button>
+</form>
 
 <table class="table">
     <thead class="thead-dark">
@@ -37,7 +42,11 @@
 </table>
 
 <div class="d-flex mt-5" style="justify-content: center">
-    {!! $products->onEachSide(1)->links() !!}
+    @if ($filters)
+        {!! $products->appends($filters)->onEachSide(1)->links() !!}
+    @else
+         {!! $products->onEachSide(1)->links() !!}
+    @endif
 </div>
 
 

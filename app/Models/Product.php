@@ -11,4 +11,16 @@ class Product extends Model
 
     //Especfiicando quais campos o Model Product deve aceitar para enviar pro banco de dados
     protected $fillable  = ['name', 'price', 'description', 'image'];
+
+    public function search($filter = null)
+    {
+        $results = $this->where(function($query) use($filter) {
+            if($filter){
+                $query->where('name','LIKE',"%{$filter}%");
+                // $query->where('description','LIKE',"%{$filter}%");
+            }
+        })->paginate();
+  
+        return $results;
+    }
 }

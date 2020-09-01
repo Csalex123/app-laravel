@@ -96,7 +96,7 @@ class ProductController extends Controller
     }
 
 
-    public function update(Request $request, $id)
+    public function update(storeProductsRequest $request, $id)
     {
         //Verificar se existe o produto pelo id
         if(!$product = Product::find($id))
@@ -119,5 +119,15 @@ class ProductController extends Controller
         $product->delete();
 
         return redirect()->route('products.index');
+    }
+
+    public function search(Product $productModel, Request $request){
+
+        /* Pegando todos os dados do filtro */
+        $filters = $request->except('_token');
+        
+        $products = $productModel->search($request->filter);
+ 
+        return view('admin.pages.products.index', compact('products', 'filters'));
     }
 }
